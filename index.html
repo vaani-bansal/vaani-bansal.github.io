@@ -1,14 +1,175 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My First Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaani Bansal | Portfolio</title>
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 50px; }
-        h1 { color: #333; }
+        /* GENERAL STYLES */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9fb;
+        }
+
+        /* HEADER SECTION */
+        header {
+            background-color: #2c3e50; /* Dark Blue Background */
+            color: #fff;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            background-color: #ddd; /* Placeholder color */
+            border-radius: 50%;
+            border: 4px solid #fff;
+            margin-bottom: 1rem;
+            object-fit: cover;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #bdc3c7;
+            margin-top: 5px;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            max-width: 800px;
+            margin: -30px auto 40px; /* Moves container up to overlap header */
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* SECTIONS */
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db; /* Blue underline */
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none; /* Removes bullet points */
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding-left: 15px;
+            border-left: 3px solid #3498db;
+        }
+
+        /* PROJECTS GRID */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            transition: transform 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px); /* Slight lift on hover */
+            background: #e8e8e8;
+        }
+
+        .project-card h3 {
+            margin-top: 0;
+            font-size: 1.1rem;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
     </style>
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>This is my very first website hosted online.</p>
+
+    <header>
+        <img src="https://via.placeholder.com/150" alt="Vaani Bansal" class="profile-photo">
+        <h1>Vaani Bansal</h1>
+        <p>Student | Learner | Creator</p>
+    </header>
+
+    <div class="container">
+        
+        <section>
+            <h2>About Me</h2>
+            <p>
+                Hello! I am Vaani. Welcome to my personal page. I am a curious student who loves exploring new ideas. 
+                This website is a collection of my academic achievements, creative projects, and the things I love to learn about.
+            </p>
+        </section>
+
+        <section>
+            <h2>Interests & Skills</h2>
+            <p>Here are a few things I am passionate about:</p>
+            <ul>
+                <li><strong>Academics:</strong> Mathematics, Science, and Reading</li>
+                <li><strong>Creativity:</strong> Drawing, Painting, and Storytelling</li>
+                <li><strong>Technology:</strong> Beginning to learn coding and digital tools</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Projects & Highlights</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>School Science Fair</h3>
+                    <p>A project exploring plant growth and sunlight.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Art Portfolio</h3>
+                    <p>A collection of my favorite sketches and watercolors from this year.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Book Reviews</h3>
+                    <p>Summaries and thoughts on the last 5 books I've read.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Contact</h2>
+            <p>If you would like to get in touch, please reach out via email.</p>
+            <p><strong>Email:</strong> vaanibansal16@gmail.com</p>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Vaani Bansal. Hosted on GitHub Pages.</p>
+    </footer>
+
 </body>
 </html>
