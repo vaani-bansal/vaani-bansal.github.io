@@ -4,112 +4,234 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vaani Bansal | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* GENERAL STYLES */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9fb;
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --primary: #6366f1; /* Indigo */
+            --secondary: #8b5cf6; /* Purple */
+            --accent: #f43f5e; /* Pink/Red for hearts/highlights */
+            --bg-color: #f3f4f6;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --white: #ffffff;
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
-        /* HEADER SECTION */
-        header {
-            background-color: #2c3e50; /* Dark Blue Background */
-            color: #fff;
-            padding: 3rem 1rem;
-            text-align: center;
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            margin: 0;
+            background-color: var(--bg-color);
         }
-        
-        .profile-photo {
-            width: 150px;
-            height: 150px;
-            background-color: #ddd; /* Placeholder color */
+
+        a { text-decoration: none; color: inherit; }
+
+        /* --- HEADER --- */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 4rem 1rem 6rem; /* Extra padding bottom for overlap */
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative circles in background */
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50px; left: -50px;
+            width: 200px; height: 200px;
+            background: rgba(255,255,255,0.1);
             border-radius: 50%;
-            border: 4px solid #fff;
+        }
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 20px; right: -20px;
+            width: 150px; height: 150px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .profile-photo {
+            width: 160px;
+            height: 160px;
+            background-color: #e5e7eb;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.5);
             margin-bottom: 1rem;
             object-fit: cover;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05) rotate(-3deg);
         }
 
         header h1 {
+            font-family: 'Outfit', sans-serif;
             margin: 0;
-            font-size: 2.5rem;
-            letter-spacing: 1px;
+            font-size: 3rem;
+            font-weight: 700;
         }
 
-        header p {
-            font-size: 1.2rem;
-            font-weight: 300;
-            color: #bdc3c7;
-            margin-top: 5px;
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
         }
 
-        /* MAIN CONTAINER */
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+        }
+
+        /* --- MAIN LAYOUT --- */
         .container {
-            max-width: 800px;
-            margin: -30px auto 40px; /* Moves container up to overlap header */
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            max-width: 850px;
+            margin: -60px auto 40px; /* Negative margin to overlap header */
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
         }
 
-        /* SECTIONS */
         section {
-            margin-bottom: 40px;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
         }
 
         h2 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db; /* Blue underline */
-            display: inline-block;
-            padding-bottom: 5px;
-            margin-bottom: 20px;
+            font-family: 'Outfit', sans-serif;
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        ul {
-            list-style-type: none; /* Removes bullet points */
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 10px;
-            padding-left: 15px;
-            border-left: 3px solid #3498db;
-        }
-
-        /* PROJECTS GRID */
-        .project-grid {
+        /* --- GRID SYSTEMS --- */
+        .grid-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
         }
 
-        .project-card {
-            background: #f4f4f4;
-            padding: 15px;
-            border-radius: 5px;
-            transition: transform 0.2s;
+        .card {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .project-card:hover {
-            transform: translateY(-3px); /* Slight lift on hover */
-            background: #e8e8e8;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
         }
 
-        .project-card h3 {
-            margin-top: 0;
+        .card-icon {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .card strong {
+            display: block;
+            color: var(--text-dark);
             font-size: 1.1rem;
+            margin-bottom: 5px;
         }
 
-        /* FOOTER */
+        /* --- ACHIEVEMENTS --- */
+        .achievement-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .achievement-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .trophy-icon {
+            background: #fffbeb; /* light yellow */
+            color: #d97706; /* dark yellow */
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .date-tag {
+            display: inline-block;
+            background: #e0e7ff;
+            color: var(--primary);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        /* --- CONTACT & FOOTER --- */
+        .contact-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        
+        .contact-btn:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
         footer {
             text-align: center;
             padding: 20px;
-            font-size: 0.8rem;
-            color: #7f8c8d;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile tweaks */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.2rem; }
+            .container { margin-top: -40px; }
+            section { padding: 25px; }
         }
     </style>
 </head>
@@ -118,46 +240,80 @@
     <header>
         <img src="vaanibansal.jpg" alt="Vaani Bansal" class="profile-photo">
         <h1>Vaani Bansal</h1>
-        <p>Student | Learner | Mathemagician </p>
+        
+        <div class="badges">
+            <span class="badge"><i class="fas fa-graduation-cap"></i> Student</span>
+            <span class="badge"><i class="fas fa-lightbulb"></i> Learner</span>
+            <span class="badge"><i class="fas fa-magic"></i> Mathemagician</span>
+        </div>
     </header>
 
     <div class="container">
         
         <section>
-            <h2>About Me</h2>
+            <h2><i class="fas fa-user-astronaut"></i> About Me</h2>
             <p>
-                Hello! I am Vaani. Welcome to my personal page. I am a curious student in Grade 2 at Stratford School, who loves exploring new ideas. 
-                This website is a collection of my academic achievements, and the things I love to learn about.
+                <strong>Hello! I am Vaani.</strong> 👋 <br>
+                Welcome to my personal page. I am a curious student in Grade 2 at Stratford School who loves exploring new ideas. 
+                This website is a collection of my academic achievements and the things I love to learn about.
             </p>
         </section>
 
         <section>
-            <h2>Interests & Skills</h2>
-            <p>Here are a few things I am passionate about:</p>
-            <ul>
-                <li><strong>Academics:</strong> Mathematics, Science, and Reading</li>
-                <li><strong>Creativity:</strong> Drawing, Drama, and Music</li>
-                <li><strong>Sports:</strong> Swimming and Gymnastics</li>
-            </ul>
+            <h2><i class="fas fa-rocket"></i> Interests & Skills</h2>
+            <div class="grid-list">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-square-root-alt"></i></div>
+                    <strong>Academics</strong>
+                    Mathematics, Science, and Reading
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-palette"></i></div>
+                    <strong>Creativity</strong>
+                    Drawing, Drama, and Music
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-swimmer"></i></div>
+                    <strong>Sports</strong>
+                    Swimming and Gymnastics
+                </div>
+            </div>
         </section>
 
         <section>
-            <h2>Updates & Achievements</h2>
-            <ul>
-                <li><strong>ThinkCup 2025</strong> Achieved top 10 rank in Grade 2 level <a href="https://www.thethinkacademy.com/G2Result?moduleId=6280&current=1">math competition</a>. (November, 2025)</li>
-                <li><strong>AoPS Problem Solvers Championship</strong> National Rank 1 in Grade 2 level math competition. (May, 2025) </li>
-            </ul>
+            <h2><i class="fas fa-trophy"></i> Updates & Achievements</h2>
+            
+            <div class="achievement-item">
+                <div class="trophy-icon"><i class="fas fa-award"></i></div>
+                <div>
+                    <strong>ThinkCup 2025</strong>
+                    <div>Achieved top 10 rank in Grade 2 level <a href="https://www.thethinkacademy.com/G2Result?moduleId=6280&current=1" style="color: var(--primary); text-decoration: underline;">math competition</a>.</div>
+                    <span class="date-tag">November, 2025</span>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="trophy-icon"><i class="fas fa-medal"></i></div>
+                <div>
+                    <strong>AoPS Problem Solvers Championship</strong>
+                    <div>National Rank 1 in Grade 2 level math competition.</div>
+                    <span class="date-tag">May, 2025</span>
+                </div>
+            </div>
         </section>
-        <section>
-            <h2>Contact</h2>
-            <p>If you would like to get in touch, please reach out via email.</p>
-            <p><strong>Email:</strong> vaanibansal16@gmail.com</p>
+
+        <section style="text-align: center;">
+            <h2><i class="fas fa-paper-plane"></i> Get in Touch</h2>
+            <p>If you would like to say hello, please reach out via email!</p>
+            <a href="mailto:vaanibansal16@gmail.com" class="contact-btn">
+                <i class="fas fa-envelope"></i> Email Vaani
+            </a>
         </section>
 
     </div>
 
     <footer>
-        <p>&copy; 2025 Vaani Bansal. Hosted on GitHub Pages.</p>
+        <p>&copy; 2025 Vaani Bansal.</p>
     </footer>
 
 </body>
