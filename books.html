@@ -34,11 +34,12 @@
 
         a { text-decoration: none; color: inherit; }
 
-        /* --- HEADER (MATCHING MAIN PAGE) --- */
+        /* --- HEADER --- */
         header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: var(--white);
-            padding: 3rem 1rem 5rem; /* Extra padding bottom for overlap */
+            /* Reduced bottom padding since we aren't overlapping anymore */
+            padding: 3rem 1rem 3rem; 
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -79,8 +80,9 @@
 
         /* --- MAIN CONTAINER --- */
         .container {
-            max-width: 1000px; /* Wider for books */
-            margin: -60px auto 40px;
+            max-width: 1000px;
+            /* Changed margin to POSITIVE 40px so it sits BELOW the header */
+            margin: 40px auto; 
             padding: 0 20px;
             position: relative;
             z-index: 10;
@@ -89,7 +91,7 @@
         /* --- BOOKSHELF GRID --- */
         .bookshelf {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Responsive Grid */
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
             gap: 25px;
         }
 
@@ -109,7 +111,7 @@
         .book-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            border-color: var(--primary); /* Indigo border on hover */
+            border-color: var(--primary); 
         }
 
         .book-cover {
@@ -132,13 +134,13 @@
 
         .book-author {
             font-size: 0.9rem;
-            color: var(--secondary); /* Purple for author */
+            color: var(--secondary); 
             margin-bottom: 10px;
             font-weight: 600;
         }
 
         .rating {
-            color: #fbbf24; /* Golden Yellow for stars */
+            color: #fbbf24; 
             font-size: 1rem;
             margin-bottom: 12px;
             background: #fffbeb;
@@ -154,20 +156,18 @@
             font-style: italic;
             border-top: 1px solid #f3f4f6;
             padding-top: 10px;
-            margin-top: auto; /* Pushes review to bottom */
+            margin-top: auto; 
         }
 
-        /* Mobile tweaks */
         @media (max-width: 600px) {
-            .container { margin-top: -40px; }
-            .bookshelf { grid-template-columns: 1fr; } /* Stack books on phone */
+            .bookshelf { grid-template-columns: 1fr; } 
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="index.html" class="home-btn"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+        <a href="index.html" class="home-btn"><i class="fas fa-arrow-left"></i> Back to Main Page</a>
         <h1><i class="fas fa-book-open"></i> My Reading Adventures</h1>
     </header>
 
@@ -187,7 +187,21 @@
                 <p class="review">"I am so glad that Jack and Annie got away from the Hammerhead shark!"</p>
             </div>
 
+             <div class="book-card">
+                <img src="https://via.placeholder.com/200x300?text=Book+Cover" alt="Another Book" class="book-cover">
+                <div class="book-title">Another Great Book</div>
+                <div class="book-author">Author Name</div>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="review">"This is where Vaani can type her next review!"</p>
             </div>
+
+        </div>
     </div>
 
 </body>
