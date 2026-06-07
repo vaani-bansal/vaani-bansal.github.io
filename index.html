@@ -4,344 +4,307 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vaani Bansal | Portfolio</title>
+    
+    <!-- Playful, highly readable fonts: Quicksand for headings, Nunito for text -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Tailwind CSS for modern layout and responsiveness -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        heading: ['Quicksand', 'sans-serif'],
+                    },
+                    colors: {
+                        candy: {
+                            blue: '#38bdf8',
+                            pink: '#fb7185',
+                            purple: '#a78bfa',
+                            yellow: '#fbbf24',
+                            mint: '#34d399'
+                        }
+                    },
+                    animation: {
+                        'float-slow': 'float 8s ease-in-out infinite',
+                        'float-fast': 'float 5s ease-in-out infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-20px) rotate(2deg)' },
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        /* --- VARIABLES & RESET --- */
-        :root {
-            --primary: #6366f1; /* Indigo */
-            --secondary: #8b5cf6; /* Purple */
-            --accent: #f43f5e; /* Pink/Red for hearts/highlights */
-            --bg-color: #f3f4f6;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --white: #ffffff;
-            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-
-        * { box-sizing: border-box; }
-
         body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.7;
-            color: var(--text-dark);
-            margin: 0;
-            background-color: var(--bg-color);
+            /* Soft, bright, sunny gradient background */
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 50%, #fce7f3 100%);
+            background-attachment: fixed;
+            color: #334155;
+            overflow-x: hidden;
         }
 
-        a { text-decoration: none; color: inherit; }
-
-        /* --- HEADER --- */
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 4rem 1rem 6rem; /* Extra padding bottom for overlap */
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+        /* Fun patterned background dots */
+        .dot-pattern {
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.4;
+            z-index: -2;
+            pointer-events: none;
         }
 
-        /* Decorative circles in background */
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50px; left: -50px;
-            width: 200px; height: 200px;
-            background: rgba(255,255,255,0.1);
+        /* Floating decorative blobs for a playful feel */
+        .blob {
+            position: fixed;
             border-radius: 50%;
-        }
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: 20px; right: -20px;
-            width: 150px; height: 150px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
+            filter: blur(40px);
+            z-index: -1;
+            opacity: 0.6;
         }
 
-        .profile-photo {
-            width: 160px;
-            height: 160px;
-            background-color: #e5e7eb;
-            border-radius: 50%;
-            border: 5px solid rgba(255, 255, 255, 0.5);
-            margin-bottom: 1rem;
-            object-fit: cover;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .profile-photo:hover {
-            transform: scale(1.05) rotate(-3deg);
-        }
-
-        header h1 {
-            font-family: 'Outfit', sans-serif;
-            margin: 0;
-            font-size: 3rem;
-            font-weight: 700;
-        }
-
-        .badges {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            backdrop-filter: blur(5px);
-        }
-
-        /* --- MAIN LAYOUT --- */
-        .container {
-            max-width: 850px;
-            margin: -60px auto 40px; /* Negative margin to overlap header */
-            padding: 0 20px;
-            position: relative;
-            z-index: 10;
-        }
-
-        section {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 16px;
-            margin-bottom: 30px;
-            box-shadow: var(--card-shadow);
-        }
-
-        h2 {
-            font-family: 'Outfit', sans-serif;
-            color: var(--primary);
-            font-size: 1.8rem;
-            margin-top: 0;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* --- GRID SYSTEMS --- */
-        .grid-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: #f9fafb;
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid #e5e7eb;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            border-color: var(--primary);
-        }
-
-        .card-icon {
-            font-size: 2rem;
-            color: var(--secondary);
-            margin-bottom: 10px;
-        }
-
-        .card strong {
-            display: block;
-            color: var(--text-dark);
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-
-        /* --- ACHIEVEMENTS --- */
-        .achievement-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            padding-bottom: 15px;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #f3f4f6;
-        }
-
-        .achievement-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .trophy-icon {
-            background: #fffbeb; /* light yellow */
-            color: #d97706; /* dark yellow */
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        .date-tag {
-            display: inline-block;
-            background: #e0e7ff;
-            color: var(--primary);
-            font-size: 0.75rem;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 600;
-            margin-top: 5px;
-        }
-
-        /* --- CONTACT & FOOTER --- */
-        .contact-btn {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: background 0.2s;
-        }
-        
-        .contact-btn:hover {
-            background: var(--secondary);
-            color: white;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        /* Mobile tweaks */
-        @media (max-width: 600px) {
-            header h1 { font-size: 2.2rem; }
-            .container { margin-top: -40px; }
-            section { padding: 25px; }
-        }
+        /* Custom soft scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     </style>
 </head>
-<body>
+<body class="antialiased min-h-screen relative selection:bg-candy-pink selection:text-white">
 
-    <header>
-        <img src="vaanibansal.jpg" alt="Vaani Bansal" class="profile-photo">
-        <h1>Vaani Bansal</h1>
+    <!-- Background Decor -->
+    <div class="dot-pattern"></div>
+    <div class="blob bg-candy-blue/20 w-96 h-96 top-0 left-[-10%] animate-float-slow"></div>
+    <div class="blob bg-candy-pink/20 w-80 h-80 bottom-20 right-[-5%] animate-float-fast" style="animation-delay: 2s;"></div>
+    <div class="blob bg-candy-yellow/20 w-64 h-64 top-[40%] left-[20%] animate-float-slow" style="animation-delay: 1s;"></div>
+
+    <header class="relative pt-16 pb-12 px-4 text-center z-10">
+        <!-- Profile Picture Container -->
+        <div class="relative inline-block mb-6 group">
+            <!-- Decorative ring that spins on hover -->
+            <div class="absolute inset-[-8px] rounded-full border-4 border-dashed border-candy-purple/40 group-hover:rotate-180 transition-transform duration-700 ease-in-out"></div>
+            
+            <img src="vaanibansal.jpg" alt="Vaani Bansal" 
+                 class="relative w-40 h-40 object-cover rounded-full border-4 border-white shadow-xl z-10 group-hover:scale-105 transition-transform duration-300">
+            
+            <!-- Fun little floating icon -->
+            <div class="absolute -bottom-2 -right-2 bg-candy-yellow text-white w-12 h-12 rounded-full flex items-center justify-center text-xl shadow-lg border-4 border-white z-20 animate-bounce">
+                <i class="fas fa-star"></i>
+            </div>
+        </div>
         
-        <div class="badges">
-            <span class="badge"><i class="fas fa-graduation-cap"></i> Student</span>
-            <span class="badge"><i class="fas fa-lightbulb"></i> Learner</span>
-            <span class="badge"><i class="fas fa-magic"></i> Mathemagician</span>
+        <h1 class="font-heading text-5xl md:text-6xl font-extrabold text-slate-800 tracking-tight mb-4 drop-shadow-sm">
+            Vaani Bansal
+        </h1>
+        
+        <div class="flex flex-wrap justify-center gap-3 max-w-2xl mx-auto">
+            <span class="px-5 py-2 rounded-full bg-white shadow-sm border border-slate-100 text-sm font-bold text-candy-blue flex items-center gap-2 hover:-translate-y-1 transition-transform cursor-default">
+                <i class="fas fa-book-open"></i> Student
+            </span>
+            <span class="px-5 py-2 rounded-full bg-white shadow-sm border border-slate-100 text-sm font-bold text-candy-pink flex items-center gap-2 hover:-translate-y-1 transition-transform cursor-default">
+                <i class="fas fa-lightbulb"></i> Learner
+            </span>
+            <span class="px-5 py-2 rounded-full bg-white shadow-sm border border-slate-100 text-sm font-bold text-candy-purple flex items-center gap-2 hover:-translate-y-1 transition-transform cursor-default">
+                <i class="fas fa-magic"></i> Mathemagician
+            </span>
         </div>
     </header>
 
-    <div class="container">
+    <main class="max-w-4xl mx-auto px-4 pb-20 relative z-10 space-y-8">
         
-        <section>
-            <h2><i class="fas fa-user-astronaut"></i> About Me</h2>
-            <p>
-                <strong>Hello! I am Vaani.</strong> 👋 <br>
-                Welcome to my personal page. I am a curious student in Grade 2 at Stratford School who loves exploring new ideas. 
-                This website is a collection of my academic achievements and the things I love to do. I am an avid reader and I maintain a <a href="books.html" style="color: var(--primary); text-decoration: underline;">book log</a> of the books I recently read.
+        <!-- ABOUT ME -->
+        <section class="bg-white/80 backdrop-blur-md rounded-[2rem] p-8 md:p-10 shadow-xl shadow-indigo-100/50 border border-white">
+            <h2 class="font-heading text-3xl font-extrabold text-slate-800 mb-6 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-candy-blue/10 flex items-center justify-center text-candy-blue transform -rotate-6">
+                    <i class="fas fa-hand-sparkles"></i>
+                </div>
+                About Me
+            </h2>
+            <p class="text-slate-600 text-lg md:text-xl leading-relaxed font-medium">
+                <strong class="text-candy-pink text-2xl font-heading">Hello! I am Vaani.</strong> 👋 <br><br>
+                Welcome to my personal page! I am a curious rising 3rd grader at Stratford School who loves exploring new ideas. 
+                This website is a collection of my academic achievements and the things I love to do. I am an avid reader and I maintain a 
+                <a href="books.html" class="inline-block text-candy-blue hover:text-candy-purple font-bold underline decoration-4 underline-offset-4 transition-colors">book log</a> 
+                of all the amazing adventures I recently read.
             </p>
         </section>
 
-        <section>
-            <h2><i class="fas fa-rocket"></i> Interests & Skills</h2>
-            <div class="grid-list">
-                <div class="card">
-                    <div class="card-icon"><i class="fas fa-square-root-alt"></i></div>
-                    <strong>Academics</strong>
-                    Mathematics, Science, and Reading
+        <!-- INTERESTS & SKILLS -->
+        <section class="bg-white/80 backdrop-blur-md rounded-[2rem] p-8 md:p-10 shadow-xl shadow-indigo-100/50 border border-white">
+            <h2 class="font-heading text-3xl font-extrabold text-slate-800 mb-8 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-candy-pink/10 flex items-center justify-center text-candy-pink transform rotate-6">
+                    <i class="fas fa-heart"></i>
                 </div>
-                <div class="card">
-                    <div class="card-icon"><i class="fas fa-palette"></i></div>
-                    <strong>Creativity</strong>
-                    Drawing, Drama, and Music
+                My Interests
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-3xl p-6 text-center shadow-sm border-2 border-indigo-50 hover:border-candy-blue hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="w-20 h-20 mx-auto rounded-full bg-candy-blue/10 flex items-center justify-center text-4xl text-candy-blue mb-4 group-hover:scale-110 group-hover:rotate-12 transition-transform">
+                        <i class="fas fa-square-root-alt"></i>
+                    </div>
+                    <strong class="block font-heading text-xl text-slate-800 mb-2">Academics</strong>
+                    <p class="text-slate-500 font-medium text-sm">Mathematics, Science, and Reading!</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon"><i class="fas fa-swimmer"></i></div>
-                    <strong>Sports</strong>
-                    Swimming and Gymnastics
+                
+                <!-- Card 2 -->
+                <div class="bg-white rounded-3xl p-6 text-center shadow-sm border-2 border-indigo-50 hover:border-candy-purple hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="w-20 h-20 mx-auto rounded-full bg-candy-purple/10 flex items-center justify-center text-4xl text-candy-purple mb-4 group-hover:scale-110 group-hover:-rotate-12 transition-transform">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <strong class="block font-heading text-xl text-slate-800 mb-2">Creativity</strong>
+                    <p class="text-slate-500 font-medium text-sm">Drawing, Drama, and Music!</p>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="bg-white rounded-3xl p-6 text-center shadow-sm border-2 border-indigo-50 hover:border-candy-mint hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="w-20 h-20 mx-auto rounded-full bg-candy-mint/10 flex items-center justify-center text-4xl text-candy-mint mb-4 group-hover:scale-110 group-hover:rotate-12 transition-transform">
+                        <i class="fas fa-swimmer"></i>
+                    </div>
+                    <strong class="block font-heading text-xl text-slate-800 mb-2">Sports</strong>
+                    <p class="text-slate-500 font-medium text-sm">Swimming and Gymnastics!</p>
                 </div>
             </div>
         </section>
 
-        <section>
-            <h2><i class="fas fa-trophy"></i> Updates & Achievements</h2>
-
-            <div class="achievement-item">
-                <div class="trophy-icon"><i class="fas fa-award"></i></div>
-                <div>
-                    <strong>Noetic Spring 2026</strong>
-                    <div>National Honor Roll in Grade 2 level  <a href="https://www.noetic-learning.com/mathcontest/results/2026Spring/grade2_honor.htm?filterTypes=Public_Private_Afterschool+Institution#CA" style="color: var(--primary); text-decoration: underline;">math competition</a>.</div>
-                    <span class="date-tag">May, 2026</span>
+        <!-- ACHIEVEMENTS -->
+        <section class="bg-white/80 backdrop-blur-md rounded-[2rem] p-8 md:p-10 shadow-xl shadow-indigo-100/50 border border-white">
+            <h2 class="font-heading text-3xl font-extrabold text-slate-800 mb-8 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-candy-yellow/20 flex items-center justify-center text-amber-500 transform -rotate-3">
+                    <i class="fas fa-trophy"></i>
                 </div>
-            </div>
+                My Trophies & Awards
+            </h2>
 
-            <div class="achievement-item">
-                <div class="trophy-icon"><i class="fas fa-award"></i></div>
-                <div>
-                    <strong>ThinkCup Spring 2026</strong>
-                    <div>Silver medal in Grade 2 level math competition.</div>
-                    <span class="date-tag">April, 2026</span>
+            <div class="space-y-4">
+                
+                <!-- Continental Math League -->
+                <div class="bg-white rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center gap-5 border border-slate-100 shadow-sm hover:shadow-md hover:border-candy-yellow transition-all">
+                    <div class="w-16 h-16 shrink-0 rounded-2xl bg-yellow-100 flex items-center justify-center text-3xl text-amber-500">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-heading text-xl font-bold text-slate-800">Continental Math League</h3>
+                        <p class="text-slate-600 mt-1 font-medium">Achieved <strong class="text-candy-pink">Distinction</strong> in the national mathematics competition.</p>
+                    </div>
+                    <div class="mt-2 sm:mt-0 px-4 py-1.5 rounded-full bg-amber-100 text-amber-700 text-sm font-bold whitespace-nowrap">
+                        Spring 2026
+                    </div>
                 </div>
-            </div>
-            
-            <div class="achievement-item">
-                <div class="trophy-icon"><i class="fas fa-award"></i></div>
-                <div>
-                    <strong>Noetic Fall 2025</strong>
-                    <div>National Honor Roll in Grade 2 level <a href="https://www.noetic-learning.com/mathcontest/results/2025Fall/grade2_honor.htm?filterTypes=Public_Private_Afterschool+Institution#CA" style="color: var(--primary); text-decoration: underline;">math competition</a>.</div>
-                    <span class="date-tag">December, 2025</span>
-                </div>
-            </div>
 
-            
-            <div class="achievement-item">
-                <div class="trophy-icon"><i class="fas fa-award"></i></div>
-                <div>
-                    <strong>ThinkCup 2025</strong>
-                    <div>Achieved top 10 rank in Grade 2 level <a href="https://www.thethinkacademy.com/G2Result?moduleId=6280&current=1" style="color: var(--primary); text-decoration: underline;">math competition</a>.</div>
-                    <span class="date-tag">November, 2025</span>
+                <!-- Noetic Spring 2026 -->
+                <div class="bg-white rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center gap-5 border border-slate-100 shadow-sm hover:shadow-md hover:border-candy-blue transition-all">
+                    <div class="w-16 h-16 shrink-0 rounded-2xl bg-blue-100 flex items-center justify-center text-3xl text-blue-500">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-heading text-xl font-bold text-slate-800">Noetic Spring 2026</h3>
+                        <p class="text-slate-600 mt-1 font-medium">
+                            National Honor Roll in Grade 2 level <a href="https://www.noetic-learning.com/mathcontest/results/2026Spring/grade2_honor.htm?filterTypes=Public_Private_Afterschool+Institution#CA" target="_blank" class="text-candy-blue hover:text-candy-purple underline decoration-2 underline-offset-2 transition-colors">math competition</a>.<br>
+                            <span class="inline-flex items-center gap-1 bg-candy-blue/10 text-candy-blue px-2 py-0.5 rounded-md font-bold mt-2"><i class="fas fa-users"></i> Team Leader</span> for scoring highest marks on the team.
+                        </p>
+                    </div>
+                    <div class="mt-2 sm:mt-0 px-4 py-1.5 rounded-full bg-blue-100 text-blue-700 text-sm font-bold whitespace-nowrap">
+                        May 2026
+                    </div>
                 </div>
-            </div>
 
-            <div class="achievement-item">
-                <div class="trophy-icon"><i class="fas fa-medal"></i></div>
-                <div>
-                    <strong>AoPS Problem Solvers Championship</strong>
-                    <div>National Rank 1 in Grade 2 level math competition.</div>
-                    <span class="date-tag">May, 2025</span>
+                <!-- ThinkCup Spring 2026 -->
+                <div class="bg-white rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center gap-5 border border-slate-100 shadow-sm hover:shadow-md hover:border-slate-300 transition-all">
+                    <div class="w-16 h-16 shrink-0 rounded-2xl bg-slate-100 flex items-center justify-center text-3xl text-slate-500">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-heading text-xl font-bold text-slate-800">ThinkCup Spring 2026</h3>
+                        <p class="text-slate-600 mt-1 font-medium">Silver medal in Grade 2 level math competition.</p>
+                    </div>
+                    <div class="mt-2 sm:mt-0 px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 text-sm font-bold whitespace-nowrap">
+                        April 2026
+                    </div>
+                </div>
+                
+                <!-- Noetic Fall 2025 -->
+                <div class="bg-white rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center gap-5 border border-slate-100 shadow-sm hover:shadow-md hover:border-candy-purple transition-all">
+                    <div class="w-16 h-16 shrink-0 rounded-2xl bg-purple-100 flex items-center justify-center text-3xl text-purple-500">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-heading text-xl font-bold text-slate-800">Noetic Fall 2025</h3>
+                        <p class="text-slate-600 mt-1 font-medium">National Honor Roll in Grade 2 level <a href="https://www.noetic-learning.com/mathcontest/results/2025Fall/grade2_honor.htm?filterTypes=Public_Private_Afterschool+Institution#CA" target="_blank" class="text-candy-blue hover:text-candy-purple underline decoration-2 underline-offset-2 transition-colors">math competition</a>.</p>
+                    </div>
+                    <div class="mt-2 sm:mt-0 px-4 py-1.5 rounded-full bg-purple-100 text-purple-700 text-sm font-bold whitespace-nowrap">
+                        Dec 2025
+                    </div>
+                </div>
+                
+                <!-- ThinkCup 2025 -->
+                <div class="bg-white rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center gap-5 border border-slate-100 shadow-sm hover:shadow-md hover:border-candy-blue transition-all">
+                    <div class="w-16 h-16 shrink-0 rounded-2xl bg-cyan-100 flex items-center justify-center text-3xl text-cyan-600">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-heading text-xl font-bold text-slate-800">ThinkCup 2025</h3>
+                        <p class="text-slate-600 mt-1 font-medium">Gold medal (top 10 rank) in Grade 2 level <a href="https://www.thethinkacademy.com/G2Result?moduleId=6280&current=1" target="_blank" class="text-candy-blue hover:text-candy-purple underline decoration-2 underline-offset-2 transition-colors">math competition</a>.</p>
+                    </div>
+                    <div class="mt-2 sm:mt-0 px-4 py-1.5 rounded-full bg-cyan-100 text-cyan-700 text-sm font-bold whitespace-nowrap">
+                        Nov 2025
+                    </div>
+                </div>
+
+                <!-- AoPS -->
+                <div class="bg-white rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center gap-5 border border-slate-100 shadow-sm hover:shadow-md hover:border-candy-yellow transition-all">
+                    <div class="w-16 h-16 shrink-0 rounded-2xl bg-orange-100 flex items-center justify-center text-3xl text-orange-500">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-heading text-xl font-bold text-slate-800">AoPS Problem Solvers</h3>
+                        <p class="text-slate-600 mt-1 font-medium">National Rank 1 in Grade 2 level math competition.</p>
+                    </div>
+                    <div class="mt-2 sm:mt-0 px-4 py-1.5 rounded-full bg-orange-100 text-orange-700 text-sm font-bold whitespace-nowrap">
+                        May 2025
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section style="text-align: center;">
-            <h2><i class="fas fa-paper-plane"></i> Get in Touch</h2>
-            <p>If you would like to say hello, please reach out via email!</p>
-            <a href="mailto:vaanibansal16@gmail.com" class="contact-btn">
+        <!-- CONTACT -->
+        <section class="bg-white/80 backdrop-blur-md rounded-[2rem] p-10 text-center shadow-xl shadow-indigo-100/50 border border-white">
+            <h2 class="font-heading text-3xl font-extrabold text-slate-800 mb-4 justify-center">
+                <i class="fas fa-paper-plane text-candy-blue mr-3 animate-pulse"></i> Say Hello!
+            </h2>
+            <p class="text-slate-600 font-medium mb-8 max-w-lg mx-auto text-lg">
+                If you would like to say hello or talk about fun math problems, please reach out via email!
+            </p>
+            
+            <a href="mailto:vaanibansal16@gmail.com" class="inline-flex items-center gap-3 bg-gradient-to-r from-candy-blue to-candy-purple text-white px-8 py-4 rounded-full font-heading font-bold text-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
                 <i class="fas fa-envelope"></i> Email Vaani
             </a>
         </section>
 
-    </div>
+    </main>
 
-    <footer>
-        <p>&copy; 2025 Vaani Bansal.</p>
+    <footer class="text-center pb-8 pt-4 text-slate-500 font-bold text-sm relative z-10">
+        <p>&copy; 2026 Vaani Bansal. Made with <i class="fas fa-heart text-candy-pink mx-1"></i> and curiosity.</p>
     </footer>
 
 </body>
