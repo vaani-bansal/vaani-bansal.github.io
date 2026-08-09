@@ -88,7 +88,35 @@
         ::-webkit-scrollbar-track { background: #f8fafc; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Smooth fade-in animation for tab switching */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
     </style>
+
+    <!-- JavaScript to handle switching between sections -->
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections first
+            document.getElementById('academics-content').classList.add('hidden');
+            document.getElementById('creativity-content').classList.add('hidden');
+            document.getElementById('sports-content').classList.add('hidden');
+
+            // Remove and re-add the fade-in class to restart the animation
+            const targetSection = document.getElementById(sectionId);
+            targetSection.classList.remove('hidden', 'fade-in');
+            
+            // Trigger reflow to restart animation
+            void targetSection.offsetWidth; 
+            
+            targetSection.classList.add('fade-in');
+        }
+    </script>
 </head>
 <body class="antialiased min-h-screen relative selection:bg-candy-pink selection:text-white">
 
@@ -101,13 +129,11 @@
     <header class="relative pt-16 pb-12 px-4 text-center z-10">
         <!-- Profile Picture Container -->
         <div class="relative inline-block mb-6 group">
-            <!-- Decorative ring that spins on hover -->
             <div class="absolute inset-[-8px] rounded-full border-4 border-dashed border-candy-purple/40 group-hover:rotate-180 transition-transform duration-700 ease-in-out"></div>
             
             <img src="vaanibansal.jpg" alt="Vaani Bansal" 
                  class="relative w-40 h-40 object-cover rounded-full border-4 border-white shadow-xl z-10 group-hover:scale-105 transition-transform duration-300">
             
-            <!-- Fun little floating icon -->
             <div class="absolute -bottom-2 -right-2 bg-candy-yellow text-white w-12 h-12 rounded-full flex items-center justify-center text-xl shadow-lg border-4 border-white z-20 animate-bounce">
                 <i class="fas fa-star"></i>
             </div>
@@ -142,23 +168,23 @@
             </h2>
             <p class="text-slate-600 text-lg md:text-xl leading-relaxed font-medium">
                 <strong class="text-candy-pink text-2xl font-heading">Hello! I am Vaani.</strong> 👋 <br><br>
-                Welcome to my personal page! I am a rising 3rd grader at <a href="https://www.harker.org/" class="inline-block text-candy-blue hover:text-candy-purple font-bold underline decoration-4 underline-offset-4 transition-colors">The Harker School</a> who loves exploring new ideas. 
+                Welcome to my personal page! I am a rising 3rd grader at <a href="https://www.harker.org/" class="inline-block text-candy-blue hover:text-candy-purple font-bold underline decoration-4 underline-offset-4 transition-colors" target="_blank">The Harker School</a> who loves exploring new ideas. 
                 This website is a collection of my academic achievements and the things I love to do. I am an avid reader and I love exploring amazing adventures in books!
             </p>
         </section>
 
-        <!-- INTERESTS & SKILLS -->
+        <!-- INTERESTS & SKILLS (Clickable Tabs) -->
         <section class="bg-white/80 backdrop-blur-md rounded-[2rem] p-8 md:p-10 shadow-xl shadow-indigo-100/50 border border-white">
             <h2 class="font-heading text-3xl font-extrabold text-slate-800 mb-8 flex items-center gap-3">
                 <div class="w-12 h-12 rounded-2xl bg-candy-pink/10 flex items-center justify-center text-candy-pink transform rotate-6">
                     <i class="fas fa-heart"></i>
                 </div>
-                My Interests
+                Click to Explore My World!
             </h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Card 1 -->
-                <div class="bg-white rounded-3xl p-6 text-center shadow-sm border-2 border-indigo-50 hover:border-candy-blue hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group">
+                <!-- Academics Tab -->
+                <div onclick="showSection('academics-content')" class="cursor-pointer bg-white rounded-3xl p-6 text-center shadow-sm border-2 border-indigo-50 hover:border-candy-blue hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group">
                     <div class="w-20 h-20 mx-auto rounded-full bg-candy-blue/10 flex items-center justify-center text-4xl text-candy-blue mb-4 group-hover:scale-110 group-hover:rotate-12 transition-transform">
                         <i class="fas fa-square-root-alt"></i>
                     </div>
@@ -166,17 +192,17 @@
                     <p class="text-slate-500 font-medium text-sm">Mathematics, Science, and Reading!</p>
                 </div>
                 
-                <!-- Card 2 (Linked to Creativity Page) -->
-                <a href="creativity.html" class="bg-white rounded-3xl p-6 text-center shadow-sm border-2 border-indigo-50 hover:border-candy-purple hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group block">
+                <!-- Creativity Tab -->
+                <div onclick="showSection('creativity-content')" class="cursor-pointer bg-white rounded-3xl p-6 text-center shadow-sm border-2 border-indigo-50 hover:border-candy-purple hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group block">
                     <div class="w-20 h-20 mx-auto rounded-full bg-candy-purple/10 flex items-center justify-center text-4xl text-candy-purple mb-4 group-hover:scale-110 group-hover:-rotate-12 transition-transform">
                         <i class="fas fa-palette"></i>
                     </div>
                     <strong class="block font-heading text-xl text-slate-800 mb-2">Creativity</strong>
                     <p class="text-slate-500 font-medium text-sm">Podcast, Drama, and Music!</p>
-                </a>
+                </div>
                 
-                <!-- Card 3 -->
-                <div class="bg-white rounded-3xl p-6 text-center shadow-sm border-2 border-indigo-50 hover:border-candy-mint hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group">
+                <!-- Sports Tab -->
+                <div onclick="showSection('sports-content')" class="cursor-pointer bg-white rounded-3xl p-6 text-center shadow-sm border-2 border-indigo-50 hover:border-candy-mint hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group">
                     <div class="w-20 h-20 mx-auto rounded-full bg-candy-mint/10 flex items-center justify-center text-4xl text-candy-mint mb-4 group-hover:scale-110 group-hover:rotate-12 transition-transform">
                         <i class="fas fa-swimmer"></i>
                     </div>
@@ -186,8 +212,10 @@
             </div>
         </section>
 
-        <!-- ACHIEVEMENTS -->
-        <section class="bg-white/80 backdrop-blur-md rounded-[2rem] p-8 md:p-10 shadow-xl shadow-indigo-100/50 border border-white">
+        <!-- DYNAMIC CONTENT AREA -->
+        
+        <!-- 1. ACADEMICS CONTENT (Visible by Default) -->
+        <section id="academics-content" class="fade-in bg-white/80 backdrop-blur-md rounded-[2rem] p-8 md:p-10 shadow-xl shadow-indigo-100/50 border border-white">
             <h2 class="font-heading text-3xl font-extrabold text-slate-800 mb-8 flex items-center gap-3">
                 <div class="w-12 h-12 rounded-2xl bg-candy-yellow/20 flex items-center justify-center text-amber-500 transform -rotate-3">
                     <i class="fas fa-trophy"></i>
@@ -196,7 +224,6 @@
             </h2>
 
             <div class="space-y-4">
-
                 <!-- SVMT 2026 -->
                 <div class="bg-white rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center gap-5 border border-slate-100 shadow-sm hover:shadow-md hover:border-emerald-300 transition-all">
                     <div class="w-16 h-16 shrink-0 rounded-2xl bg-emerald-100 flex items-center justify-center text-3xl text-emerald-500">
@@ -300,8 +327,53 @@
             </div>
         </section>
 
+        <!-- 2. CREATIVITY CONTENT (Hidden by Default) -->
+        <section id="creativity-content" class="hidden bg-white/80 backdrop-blur-md rounded-[2rem] p-8 md:p-10 shadow-xl shadow-indigo-100/50 border border-white">
+            <h2 class="font-heading text-3xl font-extrabold text-slate-800 mb-8 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-candy-purple/20 flex items-center justify-center text-candy-purple transform -rotate-3">
+                    <i class="fas fa-palette"></i>
+                </div>
+                My Creative World
+            </h2>
+
+            <div class="space-y-6">
+                <!-- Podcast Section -->
+                <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:border-candy-blue transition-colors">
+                    <h3 class="text-2xl font-heading font-bold text-candy-blue mb-4 flex items-center gap-3">
+                        <i class="fas fa-microphone-alt"></i> My Podcast
+                    </h3>
+                    <p class="text-slate-600 text-lg font-medium">
+                        I love recording stories and sharing my thoughts! My podcast is a space where I explore fun topics and share my creative adventures.
+                    </p>
+                </div>
+
+                <!-- Drama Section -->
+                <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:border-candy-pink transition-colors">
+                    <h3 class="text-2xl font-heading font-bold text-candy-pink mb-4 flex items-center gap-3">
+                        <i class="fas fa-theater-masks"></i> CMT Drama
+                    </h3>
+                    <p class="text-slate-600 text-lg font-medium">
+                        Performing with CMT (Children's Musical Theater) is amazing. I enjoy practicing my lines, dressing up in costumes, and bringing characters to life on stage!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SPORTS CONTENT (Hidden by Default) -->
+        <section id="sports-content" class="hidden bg-white/80 backdrop-blur-md rounded-[2rem] p-8 md:p-10 shadow-xl shadow-indigo-100/50 border border-white text-center">
+            <div class="w-20 h-20 mx-auto rounded-2xl bg-candy-mint/20 flex items-center justify-center text-4xl text-candy-mint mb-6 transform rotate-6">
+                <i class="fas fa-medal"></i>
+            </div>
+            <h2 class="font-heading text-3xl font-extrabold text-slate-800 mb-4">
+                Swimming & Gymnastics
+            </h2>
+            <p class="text-slate-600 text-lg font-medium">
+                More updates on my sports adventures are coming soon! Check back later to see my progress in the pool and on the mat.
+            </p>
+        </section>
+
         <!-- CONTACT -->
-        <section class="bg-white/80 backdrop-blur-md rounded-[2rem] p-10 text-center shadow-xl shadow-indigo-100/50 border border-white">
+        <section class="bg-white/80 backdrop-blur-md rounded-[2rem] p-10 text-center shadow-xl shadow-indigo-100/50 border border-white mt-12">
             <h2 class="font-heading text-3xl font-extrabold text-slate-800 mb-4 justify-center">
                 <i class="fas fa-paper-plane text-candy-blue mr-3 animate-pulse"></i> Say Hello!
             </h2>
