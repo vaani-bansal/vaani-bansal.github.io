@@ -105,7 +105,7 @@
             // Hide all sections first
             document.getElementById('academics-content').classList.add('hidden');
             document.getElementById('creativity-content').classList.add('hidden');
-            document.getElementById('sports-content').classList.add('hidden');
+            document.getElementById('volunteering-content').classList.add('hidden');
 
             // Remove and re-add the fade-in class to restart the animation
             const targetSection = document.getElementById(sectionId);
@@ -201,13 +201,13 @@
                     <p class="text-slate-500 font-medium text-sm">Podcast, Drama, and Dance!</p>
                 </div>
                 
-                <!-- Sports Tab -->
-                <div onclick="showSection('sports-content')" class="cursor-pointer bg-white rounded-3xl p-6 text-center shadow-sm border-2 border-indigo-50 hover:border-candy-mint hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group">
+                <!-- Volunteering Tab (Formerly Sports) -->
+                <div onclick="showSection('volunteering-content')" class="cursor-pointer bg-white rounded-3xl p-6 text-center shadow-sm border-2 border-indigo-50 hover:border-candy-mint hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group">
                     <div class="w-20 h-20 mx-auto rounded-full bg-candy-mint/10 flex items-center justify-center text-4xl text-candy-mint mb-4 group-hover:scale-110 group-hover:rotate-12 transition-transform">
-                        <i class="fas fa-swimmer"></i>
+                        <i class="fas fa-hand-holding-heart"></i>
                     </div>
-                    <strong class="block font-heading text-xl text-slate-800 mb-2">Sports</strong>
-                    <p class="text-slate-500 font-medium text-sm">Swimming and Gymnastics!</p>
+                    <strong class="block font-heading text-xl text-slate-800 mb-2">Giving Back</strong>
+                    <p class="text-slate-500 font-medium text-sm">Volunteering & Community!</p>
                 </div>
             </div>
         </section>
@@ -447,17 +447,37 @@
             </div>
         </section>
 
-        <!-- 3. SPORTS CONTENT (Hidden by Default) -->
-        <section id="sports-content" class="hidden bg-white/80 backdrop-blur-md rounded-[2rem] p-8 md:p-10 shadow-xl shadow-indigo-100/50 border border-white text-center">
-            <div class="w-20 h-20 mx-auto rounded-2xl bg-candy-mint/20 flex items-center justify-center text-4xl text-candy-mint mb-6 transform rotate-6">
-                <i class="fas fa-medal"></i>
-            </div>
-            <h2 class="font-heading text-3xl font-extrabold text-slate-800 mb-4">
-                Swimming & Gymnastics
+        <!-- 3. VOLUNTEERING CONTENT (Hidden by Default) -->
+        <section id="volunteering-content" class="hidden bg-white/80 backdrop-blur-md rounded-[2rem] p-8 md:p-10 shadow-xl shadow-indigo-100/50 border border-white">
+            <h2 class="font-heading text-3xl font-extrabold text-slate-800 mb-8 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-candy-mint/20 flex items-center justify-center text-candy-mint transform -rotate-3">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                My Volunteering
             </h2>
-            <p class="text-slate-600 text-lg font-medium">
-                More updates on my sports adventures are coming soon! Check back later to see my progress in the pool and on the mat.
-            </p>
+
+            <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:border-candy-mint transition-colors">
+                <div class="flex flex-col md:flex-row gap-6 items-center md:items-start">
+                    
+                    <!-- Portrait Image (Small width) -->
+                    <div class="shrink-0">
+                        <img src="MoneyPlantSale_July2026.jpg" alt="Vaani's Charity Plant Sale" class="w-48 object-cover rounded-2xl border-4 border-candy-mint/20 shadow-sm rotate-2 hover:rotate-0 transition-transform">
+                    </div>
+                    
+                    <!-- Details -->
+                    <div>
+                        <h3 class="text-2xl font-heading font-bold text-candy-mint mb-2 flex items-center gap-3">
+                            <i class="fas fa-leaf"></i> Charity Plant Sale
+                        </h3>
+                        <p class="text-slate-500 font-bold mb-4">July 2026</p>
+                        
+                        <p class="text-slate-600 text-lg font-medium leading-relaxed">
+                            I recently hosted a plant sale to give back! All the proceeds from selling my beautiful money plants went directly to the <strong class="text-slate-800">Sacred Heart Community Service</strong> charity in San Jose to help support our local community.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
         </section>
 
         <!-- CONTACT -->
